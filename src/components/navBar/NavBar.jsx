@@ -26,10 +26,12 @@ const NavBar = () => {
         <img
           src={theme === "dark" ? squaresGreen : squares}
           className="navbar__icon"
+          alt="menu icons"
         />
         <img
           src={theme === "dark" ? bellGrey : bell}
           className="navbar__icon"
+          alt="notifications"
         />
         <Avatar onClick={onClickTheme} style={{ width: 30, height: 30 }}>
           H

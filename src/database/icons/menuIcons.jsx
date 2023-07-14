@@ -8,7 +8,6 @@ import wallet from "../../images/empty-wallet-add-svgrepo-com.svg";
 import dollar from "../../images/money-recive-svgrepo-com.svg";
 import admin from "../../images/personalcard-svgrepo-com.svg";
 import admintwo from "../../images/user-svgrepo-com.svg";
-import oak from "../../images/sun-svgrepo-com.svg";
 import card from "../../images/card-tick-1-svgrepo-com.svg";
 import statements from "../../images/document-text-svgrepo-com.svg";
 import diagram from "../../images/diagram-svgrepo-com.svg";
