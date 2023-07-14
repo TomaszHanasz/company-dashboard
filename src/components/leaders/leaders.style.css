@@ -9,14 +9,6 @@
   box-shadow: 0px 10px 5px -10px rgba(0, 0, 0, 0.75);
 }
 
-.leaders__title {
-  margin-bottom: 30px;
-  text-align: center;
-  border-bottom: 1px solid rgb(180, 180, 180);
-  padding: 10px 0;
-  color: darkslategray;
-}
-
 .leaders__chart-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -32,7 +24,40 @@
   justify-content: center;
   gap: 10px;
   align-items: center;
-  background-color: rgb(34, 156, 34);
   color: white;
   border-radius: 15px;
+  border: 1px solid rgb(180, 180, 180);
+}
+
+.leaders__chart__box-green {
+  background-color: #008000;
+}
+
+.leaders__chart__box-red {
+  background-color: rgb(211, 56, 28);
+}
+
+.leader__chart__box-product {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+@media screen and (max-width: 1250px) {
+  .leader__chart__box-product {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .leaders__chart-container {
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .leaders__container {
+    width: 100%;
+  }
 }

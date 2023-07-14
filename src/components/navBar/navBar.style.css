@@ -4,7 +4,7 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 50px;
+  height: 80px;
   border-bottom: 1px solid rgb(180, 180, 180);
   margin-bottom: 50px;
   color: darkslategrey;
@@ -16,10 +16,52 @@
 .navigation-bar__right {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   width: 130px;
 }
 
 .navigation-bar__logo {
   height: 40px;
+  border-radius: 15px;
+}
+
+.navbar__icon {
+  width: 30px;
+}
+
+.navbar-dark {
+  background-color: #252525;
+}
+
+.navbar-title {
+  font-size: 3rem;
+}
+
+.navbar-title-dark {
+  color: #f4f4f4;
+}
+
+@media screen and (max-width: 750px) {
+  .navigation-bar {
+    justify-content: space-between;
+  }
+
+  .navbar-title {
+    font-size: 1.5rem;
+  }
+
+  .navigation-bar__logo {
+    height: 30px;
+    border-radius: 15px;
+  }
+
+  .navbar__icon {
+    width: 20px;
+  }
+
+  .navigation-bar__right {
+    gap: 5px;
+    width: 100px;
+    justify-content: center;
+  }
 }

@@ -1,0 +1,14 @@
+.footer {
+  text-align: center;
+  border-top: 1px solid rgb(180, 180, 180);
+  color: darkslategrey;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-dark {
+  color: #f4f4f4;
+  border-top: 1px solid #f4f4f4;
+}

@@ -14,7 +14,7 @@ const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
+      width: 200,
     },
   },
 };
@@ -33,8 +33,10 @@ export default function SelectMenu() {
 
   return (
     <div className="select-menu">
-      <FormControl size="small" sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-checkbox-label">Select</InputLabel>
+      <FormControl size="small" sx={{ m: 1, width: 250 }}>
+        <InputLabel id="demo-multiple-checkbox-label">
+          Show and hide apps
+        </InputLabel>
         <Select
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"

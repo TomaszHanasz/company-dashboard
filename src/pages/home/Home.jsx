@@ -12,11 +12,12 @@ import SelectMenu from "../../components/selectMenu/SelectMenu";
 import Leaders from "../../components/leaders/Leaders";
 import "./home.style.css";
 import { ThemeContext } from "../../App";
+import Footer from "../../components/footer/Footer";
 
 const Home = () => {
   const [icons, setIcons] = useState([...menuIcons]);
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   const selectedMenus = icons
     .slice(0, 6)
@@ -46,7 +47,9 @@ const Home = () => {
         <div className={`home-menus__container home-menus-${theme}`}>
           <div className="home-menus__title-div">
             <SelectMenu />
-            <h1 className="home-menus__title">Favorite Apps</h1>
+            <h2 className={`home-menus__title home-menus__title-${theme}`}>
+              Favorite Apps
+            </h2>
           </div>
           <div className="home-menus">
             <SortableContext
@@ -65,8 +68,10 @@ const Home = () => {
       <button onClick={toggleCollapse} className="home__expand-btn">
         {isCollapsed ? "∨" : "∧"}
       </button>
-      <div className="home__charts">
-        <h2 className="home-menus__title">S&P 500 E-Mini Decemeber 2021</h2>
+      <div className={`home__charts home-menus-${theme}`}>
+        <h2 className={`home-menus__title home-menus__title-${theme}`}>
+          S&P 500 E-Mini Decemeber 2021
+        </h2>
         <div className="home__charts__container">
           <iframe
             src="https://admisclientservices.websol.barchart.com/?module=futuresInteractiveChart&symbol=ZWU23&hideDisclaimer=1"
@@ -78,6 +83,7 @@ const Home = () => {
       <div>
         <Leaders />
       </div>
+      <Footer />
     </div>
   );
 };

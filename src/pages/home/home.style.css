@@ -17,7 +17,8 @@
 }
 
 .home-menus-dark {
-  background-color: black;
+  background-color: #333333;
+  color: #cccccc;
 }
 
 .home-menus__title {
@@ -28,6 +29,10 @@
   color: darkslategrey;
 }
 
+.home-menus__title-dark {
+  color: #f4f4f4;
+}
+
 .home-menus__title-div {
   position: relative;
 }
@@ -35,7 +40,7 @@
 .select-menu {
   position: absolute;
   right: 0;
-  top: 0;
+  top: -3px;
 }
 
 .menu-icon {
@@ -172,5 +177,53 @@
     transform: scale(1);
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .home-menus {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .home__charts__container {
+    padding-top: 450px;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .home-menus {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .home-menus {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .home__charts {
+    display: none;
+  }
+
+  .home-menus__title-div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .select-menu {
+    position: initial;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .home-menus {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .home-menus__container {
+    width: 100%;
   }
 }

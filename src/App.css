@@ -1,8 +1,4 @@
-.light {
-  color: red;
-}
-
-.dark {
-  color: blue;
-  background-color: blue;
+.App-dark {
+  height: 100%;
+  background-color: #252525;
 }

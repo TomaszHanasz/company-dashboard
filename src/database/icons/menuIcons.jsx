@@ -1,11 +1,11 @@
-import heart from "./../../images/aarogya-setu-svgrepo-com.svg";
+import mail from "../../images/sms-svgrepo-com.svg";
 import forms from "./../../images/clipboard-text-svgrepo-com.svg";
 import graph from "./../../images/chart-1-svgrepo-com.svg";
 import fx from "../../images/grid-5-svgrepo-com.svg";
 import coin from "../../images/coin-1-svgrepo-com.svg";
 import message from "../../images/device-message-svgrepo-com.svg";
 import wallet from "../../images/empty-wallet-add-svgrepo-com.svg";
-import secured from "../../images/key-square-svgrepo-com.svg";
+import dollar from "../../images/money-recive-svgrepo-com.svg";
 import admin from "../../images/personalcard-svgrepo-com.svg";
 import admintwo from "../../images/user-svgrepo-com.svg";
 import oak from "../../images/sun-svgrepo-com.svg";
@@ -98,7 +98,7 @@ const menuIcons = [
   {
     id: 17,
     name: "Secured Message Center",
-    picture: secured,
+    picture: mail,
   },
   {
     id: 18,
@@ -113,7 +113,7 @@ const menuIcons = [
   {
     id: 20,
     name: "Oak Web",
-    picture: oak,
+    picture: dollar,
   },
 ];
 
