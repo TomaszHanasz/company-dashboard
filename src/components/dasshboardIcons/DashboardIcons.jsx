@@ -3,7 +3,7 @@ import { CSS } from "@dnd-kit/utilities";
 
 export function SortableItems({ icon }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: icon.id });
+    useSortable({ id: icon.id, longPressTimeout: 1000 });
 
   const style = {
     transform: CSS.Transform.toString(transform),
