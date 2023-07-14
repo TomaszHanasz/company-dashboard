@@ -1,5 +1,6 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import PropTypes from "prop-types";
 
 export function SortableItems({ icon }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -24,3 +25,11 @@ export function SortableItems({ icon }) {
     </div>
   );
 }
+
+SortableItems.propTypes = {
+  icon: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    picture: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+};

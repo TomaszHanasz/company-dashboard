@@ -31,7 +31,6 @@ const Home = () => {
     setIcons((icons) => {
       const oldIndex = icons.findIndex((icons) => icons.id === active.id);
       const newIndex = icons.findIndex((icons) => icons.id === over.id);
-      console.log(theme.theme);
       return arrayMove(icons, oldIndex, newIndex);
     });
   };
