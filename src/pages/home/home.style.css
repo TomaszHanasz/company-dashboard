@@ -226,4 +226,8 @@
   .home-menus__container {
     width: 100%;
   }
+
+  .menu-icon {
+    width: 100%;
+  }
 }
