@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { menuIcons } from "../../database/icons/menuIcons";
 import NavBar from "../../components/navBar/NavBar";
 import { DndContext, closestCenter } from "@dnd-kit/core";
@@ -17,6 +17,8 @@ import Footer from "../../components/footer/Footer";
 const Home = () => {
   const [icons, setIcons] = useState([...menuIcons]);
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragTimeoutRef = useRef(null);
   const { theme } = useContext(ThemeContext);
 
   const selectedMenus = icons
@@ -24,6 +26,12 @@ const Home = () => {
     .map((icon, index) => (
       <SortableItems key={icon.id} icon={icon} index={index} />
     ));
+
+  const handleTouchStart = () => {
+    dragTimeoutRef.current = setTimeout(() => {
+      setIsDragging(true);
+    }, 1000);
+  };
 
   const handleDragEnd = (e) => {
     const { active, over } = e;
@@ -34,6 +42,8 @@ const Home = () => {
       console.log(theme.theme);
       return arrayMove(icons, oldIndex, newIndex);
     });
+    clearTimeout(dragTimeoutRef.current);
+    setIsDragging(false);
   };
 
   const toggleCollapse = () => {
@@ -43,7 +53,11 @@ const Home = () => {
   return (
     <div>
       <NavBar />
-      <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+      <DndContext
+        collisionDetection={closestCenter}
+        onTouchStart={handleTouchStart}
+        onDragEnd={handleDragEnd}
+      >
         <div className={`home-menus__container home-menus-${theme}`}>
           <div className="home-menus__title-div">
             <SelectMenu />
