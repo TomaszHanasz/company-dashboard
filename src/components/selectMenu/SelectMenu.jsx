@@ -7,8 +7,6 @@ import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import { menuIcons } from "../../database/icons/menuIcons";
-import { useContext } from "react";
-import { ThemeContext } from "../../App";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -23,7 +21,7 @@ const MenuProps = {
 
 export function SelectMenu({ onMenuIconChange }) {
   const [menuIcon, setMenuIcon] = React.useState([]);
-  const { theme } = useContext(ThemeContext);
+
 
   const menu = { menuIcons };
 
