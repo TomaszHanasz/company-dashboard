@@ -19,7 +19,7 @@ const MenuProps = {
   },
 };
 
-export default function SelectMenu() {
+export function SelectMenu({ onMenuIconChange }) {
   const [menuIcon, setMenuIcon] = React.useState([]);
 
   const menu = { menuIcons };
@@ -28,7 +28,9 @@ export default function SelectMenu() {
     const {
       target: { value },
     } = event;
-    setMenuIcon(typeof value === "string" ? value.split(",") : value);
+    setMenuIcon(value);
+    onMenuIconChange && onMenuIconChange(value);
+    console.log(menuIcon);
   };
 
   return (

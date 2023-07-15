@@ -8,7 +8,7 @@ import {
   horizontalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { SortableItems } from "../../components/dasshboardIcons/DashboardIcons";
-import SelectMenu from "../../components/selectMenu/SelectMenu";
+import { SelectMenu } from "../../components/selectMenu/SelectMenu";
 import Leaders from "../../components/leaders/Leaders";
 import "./home.style.css";
 import { ThemeContext } from "../../App";
@@ -18,12 +18,19 @@ const Home = () => {
   const [icons, setIcons] = useState([...menuIcons]);
   const [isCollapsed, setIsCollapsed] = useState(true);
   const { theme } = useContext(ThemeContext);
+  const [selectedMenuIcon, setSelectedMenuIcon] = useState([]);
 
-  const selectedMenus = icons
-    .slice(0, 6)
-    .map((icon, index) => (
-      <SortableItems key={icon.id} icon={icon} index={index} />
-    ));
+  const handleMenuIconChange = (menuIcon) => {
+    setSelectedMenuIcon(menuIcon);
+  };
+
+  const selectedMenuIcons = icons.filter((icon) =>
+    selectedMenuIcon.includes(icon.name)
+  );
+
+  const selectedMenus = selectedMenuIcons.map((icon, index) => (
+    <SortableItems key={icon.id} icon={icon} index={index} />
+  ));
 
   const handleDragEnd = (e) => {
     const { active, over } = e;
@@ -45,7 +52,7 @@ const Home = () => {
       <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <div className={`home-menus__container home-menus-${theme}`}>
           <div className="home-menus__title-div">
-            <SelectMenu />
+            <SelectMenu onMenuIconChange={handleMenuIconChange} />
             <h2 className={`home-menus__title home-menus__title-${theme}`}>
               Favorite Apps
             </h2>
@@ -55,11 +62,7 @@ const Home = () => {
               items={icons}
               strategy={horizontalListSortingStrategy}
             >
-              {isCollapsed
-                ? selectedMenus
-                : icons.map((icon, index) => (
-                    <SortableItems key={icon.id} icon={icon} index={index} />
-                  ))}
+              {isCollapsed ? selectedMenus.slice(0, 6) : selectedMenus}
             </SortableContext>
           </div>
         </div>
