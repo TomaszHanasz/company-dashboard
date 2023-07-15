@@ -7,13 +7,16 @@ import squares from "../../images/element-3-svgrepo-com (1).svg";
 import "./navBar.style.css";
 import { ThemeContext } from "../../App";
 import UserMenu from "../userMenu/UserMenu";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const { theme } = useContext(ThemeContext);
 
   return (
     <div className={`navigation-bar navbar-${theme}`}>
+      <Link to="/">
       <img src={Logo} alt="logo" className="navigation-bar__logo" />
+      </Link>
       <h1 className={`navbar-title navbar-title-${theme}`}>Dashboard</h1>
       <div className="navigation-bar__right">
         <img

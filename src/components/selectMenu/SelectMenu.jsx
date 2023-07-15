@@ -7,6 +7,8 @@ import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import { menuIcons } from "../../database/icons/menuIcons";
+import { useContext } from "react";
+import { ThemeContext } from "../../App";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -21,6 +23,7 @@ const MenuProps = {
 
 export function SelectMenu({ onMenuIconChange }) {
   const [menuIcon, setMenuIcon] = React.useState([]);
+  const { theme } = useContext(ThemeContext);
 
   const menu = { menuIcons };
 
@@ -35,8 +38,8 @@ export function SelectMenu({ onMenuIconChange }) {
 
   return (
     <div className="select-menu">
-      <FormControl size="small" sx={{ m: 1, width: 250 }} color="success">
-        <InputLabel id="demo-multiple-checkbox-label">
+      <FormControl size="small" sx={{ m: 1, width: 250, backgroundColor: "white", borderRadius: 1}} >
+        <InputLabel id="demo-multiple-checkbox-label" sx={{backgroundColor: "white", borderRadius: 1}} color="success">
           Show and hide apps
         </InputLabel>
         <Select
@@ -45,9 +48,10 @@ export function SelectMenu({ onMenuIconChange }) {
           multiple
           value={menuIcon}
           onChange={handleChange}
-          input={<OutlinedInput label="Tag" />}
+          input={<OutlinedInput style={{color: "grey", border: "1px grey solid"}}/>}
           renderValue={(selected) => selected.join(", ")}
           MenuProps={MenuProps}
+          color="success"
         >
           {menu.menuIcons.map((menuItem) => (
             <MenuItem key={menuItem.id} value={menuItem.name}>

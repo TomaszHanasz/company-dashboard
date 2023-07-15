@@ -9,9 +9,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+
 
 export default function UserMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -66,7 +68,7 @@ export default function UserMenu() {
         <Divider />
         <MenuItem onClick={onClickTheme}>
           <ListItemIcon>
-            <PersonAdd fontSize="small" />
+            {theme === "dark" ? <WbSunnyIcon fontSize="small" /> : <DarkModeIcon fontSize="small" />}
           </ListItemIcon>
           Switch Theme
         </MenuItem>
