@@ -24,6 +24,7 @@ const menuIcons = [
     name: "Forms Manager",
     picture: forms,
     selected: true,
+    link: "/signin",
   },
   {
     id: 2,

@@ -9,10 +9,11 @@ import {
 } from "@dnd-kit/sortable";
 import { SortableItems } from "../../components/dasshboardIcons/DashboardIcons";
 import { SelectMenu } from "../../components/selectMenu/SelectMenu";
-import Leaders from "../../components/leaders/Leaders";
-import "./home.style.css";
 import { ThemeContext } from "../../App";
+import { Link } from "react-router-dom";
+import Leaders from "../../components/leaders/Leaders";
 import Footer from "../../components/footer/Footer";
+import "./home.style.css";
 
 const Home = () => {
   const [icons, setIcons] = useState([...menuIcons]);
@@ -28,8 +29,15 @@ const Home = () => {
     selectedMenuIcon.includes(icon.name)
   );
 
+  const linkStyle = {
+    textDecoration: "none",
+    color: theme === "dark" ? "#f4f4f4" : "black",
+  };
+
   const selectedMenus = selectedMenuIcons.map((icon, index) => (
-    <SortableItems key={icon.id} icon={icon} index={index} />
+    <Link to={icon.link} style={linkStyle}>
+      <SortableItems key={icon.id} icon={icon} index={index} />
+    </Link>
   ));
 
   const handleDragEnd = (e) => {
