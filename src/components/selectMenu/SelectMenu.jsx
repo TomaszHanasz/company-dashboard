@@ -35,7 +35,7 @@ export function SelectMenu({ onMenuIconChange }) {
 
   return (
     <div className="select-menu">
-      <FormControl size="small" sx={{ m: 1, width: 250 }}>
+      <FormControl size="small" sx={{ m: 1, width: 250 }} color="success">
         <InputLabel id="demo-multiple-checkbox-label">
           Show and hide apps
         </InputLabel>

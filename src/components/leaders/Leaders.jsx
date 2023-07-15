@@ -1,19 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { ThemeContext } from "../../App";
 import "./leaders.style.css";
 
 const Leaders = () => {
   const { theme } = useContext(ThemeContext);
-  const [flipped, setFlipped] = useState("front");
-
-  const onFlipHandler = () => {
-    setFlipped("back");
-    if (flipped === "back") {
-      setFlipped("front");
-    }
-    console.log(flipped);
-  };
-
+ 
   return (
     <div className={`leaders__container home-menus-${theme}`}>
       <h2 className={`home-menus__title home-menus__title-${theme}`}>

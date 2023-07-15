@@ -41,6 +41,11 @@
   color: #f4f4f4;
 }
 
+#root > div > div > div.navigation-bar.navbar-light > div > div > button {
+  margin-left: 0px;
+}
+
+
 @media screen and (max-width: 750px) {
   .navigation-bar {
     justify-content: space-between;
@@ -61,7 +66,7 @@
 
   .navigation-bar__right {
     gap: 5px;
-    width: 100px;
+    /* width: 100px; */
     justify-content: center;
   }
 }
