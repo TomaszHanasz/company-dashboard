@@ -23,12 +23,7 @@ function Copyright(props) {
       align="center"
       {...props}
     >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
+      ©{new Date().getFullYear()} ADM Investors Services, Inc
     </Typography>
   );
 }

@@ -1,0 +1,10 @@
+.sign-up__background {
+  width: 100%;
+  height: 100vh;
+  background-image: url("./../../images/nick-chong-N__BnvQ_w18-unsplash.jpg");
+  background-position: center;
+}
+
+.sign-up__box {
+  margin-top: 00px;
+}
