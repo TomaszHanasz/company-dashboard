@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -36,6 +37,9 @@ export default function SignInSide() {
   const { signInWithEmail } = UserAuth();
   const navigate = useNavigate();
 
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -46,7 +50,18 @@ export default function SignInSide() {
       if (userCredentials) {
         navigate("/");
       }
+      setEmailError("");
+      setPasswordError("");
     } catch (err) {
+      if (err.code === "auth/user-not-found") {
+        setEmailError("User not found");
+      } else if (err.code === "auth/wrong-password") {
+        setPasswordError("Wrong password");
+      } else if (err.code === "auth/too-many-requests") {
+        setEmailError(
+          "Too many unsuccessfull login attemps. Please wait a minute."
+        );
+      }
       console.log(err);
     }
   };
@@ -90,7 +105,7 @@ export default function SignInSide() {
             </Typography>
             <Box
               component="form"
-              noValidate
+              Validate
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
@@ -103,6 +118,8 @@ export default function SignInSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                error={emailError !== ""}
+                helperText={emailError}
               />
               <TextField
                 margin="normal"
@@ -113,6 +130,8 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                error={passwordError !== ""}
+                helperText={passwordError}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -30,6 +31,9 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   const { createNewUser } = UserAuth();
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
@@ -42,7 +46,16 @@ export default function SignUp() {
       if (newUser) {
         navigate("/");
       }
+      setEmailError("");
+      setPasswordError("");
     } catch (err) {
+      if (err.code === "auth/invalid-email") {
+        setEmailError("Invalid email address.");
+      } else if (err.code === "auth/weak-password") {
+        setPasswordError("Password should be at least 6 characters.");
+      } else if (err.code === "auth/email-already-in-use") {
+        setEmailError("Email already in use.");
+      }
       console.log("Error with sign up:", err);
     }
   };
@@ -77,7 +90,7 @@ export default function SignUp() {
             </Typography>
             <Box
               component="form"
-              noValidate
+              Validate
               onSubmit={handleSubmit}
               sx={{ mt: 3 }}
             >
@@ -90,6 +103,8 @@ export default function SignUp() {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
+                    error={emailError !== ""}
+                    helperText={emailError}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -101,6 +116,8 @@ export default function SignUp() {
                     type="password"
                     id="password"
                     autoComplete="new-password"
+                    error={passwordError !== ""}
+                    helperText={passwordError}
                   />
                 </Grid>
               </Grid>
