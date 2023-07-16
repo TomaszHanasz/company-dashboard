@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../../components/navBar/NavBar";
+import DataTable from "../../components/dataTable/DataTable";
 import "./tableSite.style.css";
 
 const TableSite = () => {
   const [searchedCompany, setSearchedCompany] = useState("");
   const [searchList, setSearchList] = useState([]);
+  const [companyId, setCompanyId] = useState(null);
+  const [companyName, setCompanyName] = useState("");
+  const [stockInfo, setStockInfo] = useState(null);
 
   const onSearchHandler = (e) => {
     setSearchedCompany(e.target.value);
+  };
+
+  const onClickSetCompany = (el) => {
+    setCompanyId(el.symbol);
+    setCompanyName(el.name);
+    setSearchedCompany("");
+    setSearchList([]);
+    getData(el);
+    console.log(stockInfo);
   };
 
   useEffect(() => {
@@ -23,7 +36,6 @@ const TableSite = () => {
             symbol: el["1. symbol"],
             region: el["4. region"],
           }));
-          console.log(searchedCompanies);
           setSearchList(searchedCompanies);
         }
       } catch (error) {
@@ -36,26 +48,41 @@ const TableSite = () => {
   const getData = async () => {
     try {
       const response = await fetch(
-        "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&apikey=8UR765U4TVLKLAZX"
+        `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${companyId}&apikey=8UR765U4TVLKLAZX`
       );
       const data = await response.json();
-      console.log(data);
+      if (data) {
+        const companyStockInfo = {
+          name: companyName,
+          symbol: data["Meta Data"]["2. Symbol"],
+          metaData: data["Meta Data"],
+          timeSeries: data["Time Series (Daily)"],
+        };
+        setStockInfo(companyStockInfo);
+      }
     } catch (err) {
       console.log("fetching error", err);
     }
   };
 
+  useEffect(() => {
+    getData();
+  }, [companyId]);
+
   return (
     <div>
       <NavBar />
       <div className="table-data__container">
-        <button onClick={getData}>Fetch</button>
         <div className="search__input">
           <input type="text" placeholder="Search" onChange={onSearchHandler} />
           <div className="search__list-container">
             {searchList.map((el, index) => {
               return (
-                <div key={index} className="search__list">
+                <div
+                  key={index}
+                  className="search__list"
+                  onClick={() => onClickSetCompany(el)}
+                >
                   <p className="search__option-symbol">{el.symbol}</p>
                   <div className="search__option-right">
                     <p className="search__option-name">{el.name}</p>
@@ -66,6 +93,7 @@ const TableSite = () => {
             })}
           </div>
         </div>
+        <DataTable />
       </div>
     </div>
   );
