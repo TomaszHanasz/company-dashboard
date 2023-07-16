@@ -57,7 +57,14 @@ const Home = () => {
   return (
     <div>
       <NavBar />
-      <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+      <DndContext
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+        activationConstraint={{
+          delay: 250,
+          tolerance: 5,
+        }}
+      >
         <div className={`home-menus__container home-menus-${theme}`}>
           <div className="home-menus__title-div">
             <SelectMenu onMenuIconChange={handleMenuIconChange} />

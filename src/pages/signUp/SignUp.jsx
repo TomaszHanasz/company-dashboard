@@ -11,7 +11,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate, Link as RouterLink } from "react-router-dom";
-import { createNewUser } from "../../firebase-config";
+import { UserAuth } from "../../context/AuthContext";
+import { useContext } from "react";
 
 function Copyright(props) {
   return (
@@ -34,6 +35,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+  const { createNewUser } = UserAuth();
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();

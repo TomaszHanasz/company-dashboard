@@ -1,21 +1,23 @@
-import * as React from 'react';
-import { useContext } from 'react';
-import { ThemeContext } from '../../App';
-import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import WbSunnyIcon from '@mui/icons-material/WbSunny';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-
+import * as React from "react";
+import { useContext, useState } from "react";
+import { ThemeContext } from "../../App";
+import { useNavigate } from "react-router-dom";
+import { UserAuth } from "../../context/AuthContext";
+import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import Settings from "@mui/icons-material/Settings";
+import Logout from "@mui/icons-material/Logout";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 export default function UserMenu() {
+  const { user, logout } = UserAuth();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -23,6 +25,16 @@ export default function UserMenu() {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/signin");
+      console.log("You are logged out");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const { theme, setTheme } = useContext(ThemeContext);
@@ -36,15 +48,15 @@ export default function UserMenu() {
 
   return (
     <React.Fragment>
-      <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+      <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
             size="small"
             sx={{ ml: 2 }}
-            aria-controls={open ? 'account-menu' : undefined}
+            aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
+            aria-expanded={open ? "true" : undefined}
           >
             <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
           </IconButton>
@@ -56,19 +68,22 @@ export default function UserMenu() {
         open={open}
         onClose={handleClose}
         onClick={handleClose}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={handleClose}>
-            Profile
+        <MenuItem style={{ backgroundColor: "lightgrey" }}>
+          {user && user.email}
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-            My account
-        </MenuItem>
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}>My account</MenuItem>
         <Divider />
         <MenuItem onClick={onClickTheme}>
           <ListItemIcon>
-            {theme === "dark" ? <WbSunnyIcon fontSize="small" /> : <DarkModeIcon fontSize="small" />}
+            {theme === "dark" ? (
+              <WbSunnyIcon fontSize="small" />
+            ) : (
+              <DarkModeIcon fontSize="small" />
+            )}
           </ListItemIcon>
           Switch Theme
         </MenuItem>
@@ -78,7 +93,7 @@ export default function UserMenu() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
