@@ -5,6 +5,7 @@ import Home from "./pages/home/Home";
 import SignInSide from "./pages/signIn/SignIn";
 import SignUp from "./pages/signUp/SignUp";
 import { AuthContextProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 
 export const ThemeContext = createContext(null);
 
@@ -15,7 +16,14 @@ function App() {
       <div className={`App App-${theme}`}>
         <AuthContextProvider>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/signin" element={<SignInSide />} />
             <Route path="/signup" element={<SignUp />} />
           </Routes>

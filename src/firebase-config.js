@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore/lite";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -26,9 +26,4 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 // const provider = new GoogleAuthProvider();
 
-const signInWithEmail = async (email, password) => {
-  if (!email && !password) return;
-  return await signInWithEmailAndPassword(auth, email, password);
-};
-
-export { app, db, auth, signInWithEmail };
+export { app, db, auth };

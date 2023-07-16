@@ -12,7 +12,6 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate, Link as RouterLink } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
-import { useContext } from "react";
 
 function Copyright(props) {
   return (
@@ -45,7 +44,7 @@ export default function SignUp() {
     try {
       const newUser = await createNewUser(email, password);
       if (newUser) {
-        navigate("/signin");
+        navigate("/");
       }
     } catch (err) {
       console.log("Error with sign up:", err);
