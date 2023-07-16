@@ -6,6 +6,7 @@ import SignInSide from "./pages/signIn/SignIn";
 import SignUp from "./pages/signUp/SignUp";
 import { AuthContextProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
+import TableSite from "./pages/table/TableSite";
 
 export const ThemeContext = createContext(null);
 
@@ -21,6 +22,15 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Home />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/table"
+              element={
+                <ProtectedRoute>
+                  {" "}
+                  <TableSite />
                 </ProtectedRoute>
               }
             />
