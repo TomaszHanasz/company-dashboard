@@ -66,7 +66,7 @@ const TableSite = () => {
   };
 
   useEffect(() => {
-    getData();
+    getData(); // eslint-disable-next-line
   }, [companyId]);
 
   return (

@@ -25,7 +25,8 @@ function Copyright(props) {
       align="center"
       {...props}
     >
-      <img src={logo} />©{new Date().getFullYear()} ADM Investors Services, Inc
+      <img src={logo} alt="logo" />©{new Date().getFullYear()} ADM Investors
+      Services, Inc
     </Typography>
   );
 }
