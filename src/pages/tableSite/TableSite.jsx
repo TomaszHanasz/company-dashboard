@@ -54,9 +54,10 @@ const TableSite = () => {
         const companyStockInfo = {
           name: companyName,
           symbol: data["Meta Data"]["2. Symbol"],
-          todayOpen: data["Time Series (Daily)"]["2023-07-14"]["1. open"],
+          metadata: data["Meta Data"],
+          timeSeries: data["Time Series (Daily)"],
         };
-
+        console.log(data);
         setStockInfo(companyStockInfo);
         console.log(stockInfo);
       }
@@ -93,6 +94,9 @@ const TableSite = () => {
             })}
           </div>
         </div>
+        <h1 className="table__company-name">
+          {stockInfo ? stockInfo.name : null}
+        </h1>
         <DataTable stockInfo={stockInfo} />
       </div>
     </div>

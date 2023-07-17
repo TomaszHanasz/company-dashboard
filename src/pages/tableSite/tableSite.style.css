@@ -15,6 +15,8 @@
   position: relative;
   align-items: flex-end;
   position: relative;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 
 .search__input input {
@@ -62,4 +64,33 @@
 
 .search__option-region {
   font-size: 0.6rem;
+}
+
+.table__company-name {
+  text-align: center;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 800px) {
+  .search__input {
+    align-items: center;
+  }
+
+  .search__input input {
+    width: 300px;
+  }
+
+  .search__list-container {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .table-data__container {
+    width: 100%;
+  }
+
+  .table__company-name {
+    font-size: 1.3rem;
+  }
 }

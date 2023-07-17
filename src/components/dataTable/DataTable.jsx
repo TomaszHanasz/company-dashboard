@@ -8,20 +8,42 @@ import {
 import "./dataTable.style.css";
 
 const DataTable = ({ stockInfo }) => {
-  const data = useMemo(() => (stockInfo ? [stockInfo] : []), [stockInfo]);
+  const data = useMemo(() => {
+    if (stockInfo) {
+      const { timeSeries } = stockInfo;
+      return Object.entries(timeSeries).map(([date, values]) => ({
+        date,
+        ...values,
+      }));
+    } else {
+      return [];
+    }
+  }, [stockInfo]);
 
   const columns = [
     {
-      header: "Symbol",
-      accessorKey: "symbol",
+      header: "Date",
+      accessorKey: "date",
     },
     {
-      header: "Name",
-      accessorKey: "name",
+      header: "Open",
+      accessorKey: "1. open",
     },
     {
-      header: "Today",
-      accessorKey: "todayOpen",
+      header: "High",
+      accessorKey: "2. high",
+    },
+    {
+      header: "Low",
+      accessorKey: "3. low",
+    },
+    {
+      header: "Close",
+      accessorKey: "4. close",
+    },
+    {
+      header: "Adjusted Close",
+      accessorKey: "5. adjusted close",
     },
   ];
 

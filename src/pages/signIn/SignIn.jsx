@@ -24,9 +24,10 @@ function Copyright(props) {
       color="text.secondary"
       align="center"
       {...props}
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <img src={logo} alt="logo" />©{new Date().getFullYear()} ADM Investors
-      Services, Inc
+      <img src={logo} alt="logo" style={{ width: 100 }} />©
+      {new Date().getFullYear()} ADM Investors Services, Inc
     </Typography>
   );
 }

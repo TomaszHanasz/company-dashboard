@@ -19,3 +19,9 @@ tr:hover {
   width: 70%;
   margin: 50px auto;
 }
+
+@media screen and (max-width: 750px) {
+  .stock__data-table {
+    width: 100%;
+  }
+}
