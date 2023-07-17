@@ -1,8 +1,10 @@
 .table-data__container {
   width: 80%;
+  min-height: 80vh;
   border: 1px solid rgb(180, 180, 180);
   border-radius: 10px;
   margin: 0 auto;
+  margin-bottom: 50px;
   padding-bottom: 30px;
   -webkit-box-shadow: 0px 10px 5px -10px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 10px 5px -10px rgba(0, 0, 0, 0.75);

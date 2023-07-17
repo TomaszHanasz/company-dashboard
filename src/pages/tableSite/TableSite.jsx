@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import NavBar from "../../components/navBar/NavBar";
 import DataTable from "../../components/dataTable/DataTable";
+import Footer from "../../components/footer/Footer";
 import { ThemeContext } from "../../App";
 import "./tableSite.style.css";
 
@@ -59,9 +60,7 @@ const TableSite = () => {
           metadata: data["Meta Data"],
           timeSeries: data["Time Series (Daily)"],
         };
-        console.log(data);
         setStockInfo(companyStockInfo);
-        console.log(stockInfo);
       }
     } catch (err) {
       console.log("fetching error", err);
@@ -101,6 +100,7 @@ const TableSite = () => {
         </h1>
         <DataTable stockInfo={stockInfo} />
       </div>
+      <Footer />
     </div>
   );
 };
