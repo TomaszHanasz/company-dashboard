@@ -10,6 +10,7 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import logo from "./../../images/logo.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate, Link as RouterLink } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
@@ -23,7 +24,7 @@ function Copyright(props) {
       align="center"
       {...props}
     >
-      ©{new Date().getFullYear()} ADM Investors Services, Inc
+      <img src={logo} />©{new Date().getFullYear()} ADM Investors Services, Inc
     </Typography>
   );
 }

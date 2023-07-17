@@ -5,24 +5,23 @@ import {
   getCoreRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { menuIcons } from "../../database/icons/menuIcons";
 import "./dataTable.style.css";
 
-const DataTable = () => {
-  const data = useMemo(() => menuIcons, []);
+const DataTable = ({ stockInfo }) => {
+  const data = useMemo(() => (stockInfo ? [stockInfo] : []), [stockInfo]);
 
   const columns = [
     {
-      header: "ID",
-      accessorKey: "id",
+      header: "Symbol",
+      accessorKey: "symbol",
     },
     {
       header: "Name",
       accessorKey: "name",
     },
     {
-      header: "Link",
-      accessorKey: "link",
+      header: "Today",
+      accessorKey: "todayOpen",
     },
   ];
 

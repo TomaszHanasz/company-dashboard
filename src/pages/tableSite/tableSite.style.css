@@ -38,6 +38,7 @@
   cursor: pointer;
   border: 1px solid #333333;
   color: darkslategrey;
+  background-color: white;
   height: 50px;
   padding: 5px;
 }

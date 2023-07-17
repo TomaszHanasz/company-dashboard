@@ -20,7 +20,6 @@ const TableSite = () => {
     setSearchedCompany("");
     setSearchList([]);
     getData(el);
-    console.log(stockInfo);
   };
 
   useEffect(() => {
@@ -55,10 +54,11 @@ const TableSite = () => {
         const companyStockInfo = {
           name: companyName,
           symbol: data["Meta Data"]["2. Symbol"],
-          metaData: data["Meta Data"],
-          timeSeries: data["Time Series (Daily)"],
+          todayOpen: data["Time Series (Daily)"]["2023-07-14"]["1. open"],
         };
+
         setStockInfo(companyStockInfo);
+        console.log(stockInfo);
       }
     } catch (err) {
       console.log("fetching error", err);
@@ -93,7 +93,7 @@ const TableSite = () => {
             })}
           </div>
         </div>
-        <DataTable />
+        <DataTable stockInfo={stockInfo} />
       </div>
     </div>
   );
