@@ -11,10 +11,21 @@ const DataTable = ({ stockInfo }) => {
   const data = useMemo(() => {
     if (stockInfo) {
       const { timeSeries } = stockInfo;
-      return Object.entries(timeSeries).map(([date, values]) => ({
-        date,
-        ...values,
-      }));
+      const formattedData = Object.entries(timeSeries).map(([date, values]) => {
+        return {
+          date,
+          open: values["1. open"],
+          high: values["2. high"],
+          low: values["3. low"],
+          close: values["4. close"],
+          adjustedClose: values["5. adjusted close"],
+          volume: values["6. volume"],
+          dividendAmount: values["7. dividend amount"],
+          splitCoefficient: values["8. split coefficient"],
+        };
+      });
+      console.log(formattedData);
+      return formattedData;
     } else {
       return [];
     }
@@ -27,23 +38,23 @@ const DataTable = ({ stockInfo }) => {
     },
     {
       header: "Open",
-      accessorKey: "1. open",
+      accessorKey: "open",
     },
     {
       header: "High",
-      accessorKey: "2. high",
+      accessorKey: "high",
     },
     {
       header: "Low",
-      accessorKey: "3. low",
+      accessorKey: "low",
     },
     {
       header: "Close",
-      accessorKey: "4. close",
+      accessorKey: "close",
     },
     {
       header: "Adjusted Close",
-      accessorKey: "5. adjusted close",
+      accessorKey: "adjustedClose",
     },
   ];
 
