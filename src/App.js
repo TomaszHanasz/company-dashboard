@@ -29,7 +29,6 @@ function App() {
               path="/table"
               element={
                 <ProtectedRoute>
-                  {" "}
                   <TableSite />
                 </ProtectedRoute>
               }

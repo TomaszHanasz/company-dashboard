@@ -1,13 +1,15 @@
 import React from "react";
-import { useMemo } from "react";
+import { useMemo, useContext } from "react";
 import {
   useReactTable,
   getCoreRowModel,
   flexRender,
 } from "@tanstack/react-table";
+import { ThemeContext } from "../../App";
 import "./dataTable.style.css";
 
 const DataTable = ({ stockInfo }) => {
+  const { theme } = useContext(ThemeContext);
   const data = useMemo(() => {
     if (stockInfo) {
       const { timeSeries } = stockInfo;
@@ -68,7 +70,7 @@ const DataTable = ({ stockInfo }) => {
     <div>
       <table className="stock__data-table">
         {table.getHeaderGroups().map((headerGroup) => (
-          <tr key={headerGroup.id}>
+          <tr className={`table-row-${theme}`} key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
               <th key={header.id}>
                 {flexRender(
@@ -81,7 +83,7 @@ const DataTable = ({ stockInfo }) => {
         ))}
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
+            <tr className={`table-row-${theme}`} key={row.id}>
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}

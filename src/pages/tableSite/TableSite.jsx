@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import NavBar from "../../components/navBar/NavBar";
 import DataTable from "../../components/dataTable/DataTable";
+import { ThemeContext } from "../../App";
 import "./tableSite.style.css";
 
 const TableSite = () => {
@@ -9,6 +10,7 @@ const TableSite = () => {
   const [companyId, setCompanyId] = useState(null);
   const [companyName, setCompanyName] = useState("");
   const [stockInfo, setStockInfo] = useState(null);
+  const { theme } = useContext(ThemeContext);
 
   const onSearchHandler = (e) => {
     setSearchedCompany(e.target.value);
@@ -73,7 +75,7 @@ const TableSite = () => {
   return (
     <div>
       <NavBar />
-      <div className="table-data__container">
+      <div className={`table-data__container home-menus-${theme}`}>
         <div className="search__input">
           <input type="text" placeholder="Search" onChange={onSearchHandler} />
           <div className="search__list-container">
@@ -94,7 +96,7 @@ const TableSite = () => {
             })}
           </div>
         </div>
-        <h1 className="table__company-name">
+        <h1 className={`home-menus__title home-menus__title-${theme}`}>
           {stockInfo ? stockInfo.name : null}
         </h1>
         <DataTable stockInfo={stockInfo} />

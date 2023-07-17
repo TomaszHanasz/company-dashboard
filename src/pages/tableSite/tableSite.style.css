@@ -83,6 +83,10 @@
   .search__list-container {
     width: 300px;
   }
+
+  .search__option-name {
+    font-size: 0.6rem;
+  }
 }
 
 @media screen and (max-width: 600px) {
