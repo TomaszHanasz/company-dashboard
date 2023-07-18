@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,7 +11,6 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import logo from "./../../images/logo.png";
-import GoogleButton from "react-google-button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate, Link as RouterLink } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
@@ -36,24 +35,24 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
-  const { signInWithEmail, googleSignIn, user } = UserAuth();
+  const { signInWithEmail } = UserAuth();
   const navigate = useNavigate();
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const handleGoogleSignIn = async () => {
-    try {
-      await googleSignIn();
-    } catch (err) {
-      console.log("google sign in error:", err);
-    }
-  };
+  // const handleGoogleSignIn = async () => {
+  //   try {
+  //     await googleSignIn();
+  //   } catch (err) {
+  //     console.log("google sign in error:", err);
+  //   }
+  // };
 
-  useEffect(() => {
-    if (user !== null) {
-      navigate("/");
-    } // eslint-disable-next-line
-  }, [user]);
+  // useEffect(() => {
+  //   if (user !== null) {
+  //     navigate("/");
+  //   } // eslint-disable-next-line
+  // }, [user]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -157,18 +156,15 @@ export default function SignInSide() {
               >
                 Sign In
               </Button>
-              <Button
+              {/* <Button
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
                 onClick={handleGoogleSignIn}
+                className="google-btn"
               >
                 Sign In with Google Account
-              </Button>
-              <GoogleButton
-                className="google-btn"
-                style={{ backgroundColor: "#1976d2" }}
-              />
+              </Button> */}
               <Grid container>
                 <Grid item>
                   <RouterLink to="/signup">
