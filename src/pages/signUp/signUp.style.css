@@ -13,3 +13,14 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@media screen and (max-width: 600px) {
+  .sign-up__background {
+    position: initial;
+  }
+
+  .sign-up__box {
+    position: initial;
+    transform: translate(0, 5%);
+  }
+}
