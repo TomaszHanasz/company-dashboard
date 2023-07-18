@@ -52,7 +52,7 @@ export default function SignInSide() {
   useEffect(() => {
     if (user !== null) {
       navigate("/");
-    }
+    } // eslint-disable-next-line
   }, [user]);
 
   const handleSubmit = async (event) => {
@@ -157,10 +157,18 @@ export default function SignInSide() {
               >
                 Sign In
               </Button>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={handleGoogleSignIn}
+              >
+                Sign In with Google Account
+              </Button>
               <GoogleButton
                 className="google-btn"
                 style={{ backgroundColor: "#1976d2" }}
-                onClick={handleGoogleSignIn}
               />
               <Grid container>
                 <Grid item>
