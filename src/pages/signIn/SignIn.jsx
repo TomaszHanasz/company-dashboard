@@ -40,24 +40,12 @@ export default function SignInSide() {
 
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [rememberUser, setRememberUser] = useState(false);
-
-  React.useEffect(() => {
-    const isRememberChecked = localStorage.getItem("is remember me checked");
-    console.log(isRememberChecked);
-    if (isRememberChecked) {
-      setRememberUser(true);
-    }
-  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get("email");
     const password = data.get("password");
-    if (rememberUser) {
-      localStorage.setItem("user email", email);
-    }
     try {
       const userCredentials = await signInWithEmail(email, password);
       if (userCredentials) {
@@ -129,7 +117,6 @@ export default function SignInSide() {
                 id="email"
                 label="Email Address"
                 name="email"
-                value={localStorage.getItem("user email")}
                 autoComplete="email"
                 autoFocus
                 error={emailError !== ""}
