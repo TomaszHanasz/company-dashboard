@@ -26,13 +26,13 @@ const TableSite = () => {
   };
 
   useEffect(() => {
-    const searchList = async () => {
+    const getSearchList = async () => {
       try {
         const response = await fetch(
           `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${searchedCompany}&apikey=8UR765U4TVLKLAZX`
         );
         const data = await response.json();
-        if (data) {
+        if (data.bestMatches) {
           const searchedCompanies = data.bestMatches.map((el) => ({
             name: el["2. name"],
             symbol: el["1. symbol"],
@@ -44,7 +44,9 @@ const TableSite = () => {
         console.log(error);
       }
     };
-    searchList();
+    if (searchList) {
+      getSearchList();
+    } // eslint-disable-next-line
   }, [searchedCompany]);
 
   const getData = async () => {
@@ -68,7 +70,9 @@ const TableSite = () => {
   };
 
   useEffect(() => {
-    getData(); // eslint-disable-next-line
+    if (companyId) {
+      getData();
+    } // eslint-disable-next-line
   }, [companyId]);
 
   return (

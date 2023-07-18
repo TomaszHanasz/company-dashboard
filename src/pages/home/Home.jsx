@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { menuIcons } from "../../database/icons/menuIcons";
 import NavBar from "../../components/navBar/NavBar";
 import { DndContext, closestCenter } from "@dnd-kit/core";
@@ -28,6 +28,13 @@ const Home = () => {
   const selectedMenuIcons = icons.filter((icon) =>
     selectedMenuIcon.includes(icon.name)
   );
+
+  useEffect(() => {
+    const selectedIcons = localStorage.getItem("selected icons");
+    if (selectedIcons) {
+      setSelectedMenuIcon(selectedIcons.split(","));
+    }
+  }, []);
 
   const linkStyle = {
     textDecoration: "none",

@@ -22,6 +22,12 @@ const MenuProps = {
 export function SelectMenu({ onMenuIconChange }) {
   const [menuIcon, setMenuIcon] = React.useState([]);
 
+  React.useEffect(() => {
+    const selectedIcons = localStorage.getItem("selected icons");
+    if (selectedIcons) {
+      setMenuIcon(selectedIcons.split(","));
+    }
+  }, []);
 
   const menu = { menuIcons };
 
@@ -31,13 +37,20 @@ export function SelectMenu({ onMenuIconChange }) {
     } = event;
     setMenuIcon(value);
     onMenuIconChange && onMenuIconChange(value);
-    console.log(menuIcon);
+    localStorage.setItem("selected icons", value);
   };
 
   return (
     <div className="select-menu">
-      <FormControl size="small" sx={{ m: 1, width: 250, backgroundColor: "white", borderRadius: 1}} >
-        <InputLabel id="demo-multiple-checkbox-label" sx={{backgroundColor: "white", borderRadius: 1}} color="success">
+      <FormControl
+        size="small"
+        sx={{ m: 1, width: 250, backgroundColor: "white", borderRadius: 1 }}
+      >
+        <InputLabel
+          id="demo-multiple-checkbox-label"
+          sx={{ backgroundColor: "white", borderRadius: 1 }}
+          color="success"
+        >
           Show and hide apps
         </InputLabel>
         <Select
@@ -46,7 +59,11 @@ export function SelectMenu({ onMenuIconChange }) {
           multiple
           value={menuIcon}
           onChange={handleChange}
-          input={<OutlinedInput style={{color: "grey", border: "1px grey solid"}}/>}
+          input={
+            <OutlinedInput
+              style={{ color: "grey", border: "1px grey solid" }}
+            />
+          }
           renderValue={(selected) => selected.join(", ")}
           MenuProps={MenuProps}
           color="success"

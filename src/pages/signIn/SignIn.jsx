@@ -4,8 +4,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -42,12 +40,24 @@ export default function SignInSide() {
 
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [rememberUser, setRememberUser] = useState(false);
+
+  React.useEffect(() => {
+    const isRememberChecked = localStorage.getItem("is remember me checked");
+    console.log(isRememberChecked);
+    if (isRememberChecked) {
+      setRememberUser(true);
+    }
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get("email");
     const password = data.get("password");
+    if (rememberUser) {
+      localStorage.setItem("user email", email);
+    }
     try {
       const userCredentials = await signInWithEmail(email, password);
       if (userCredentials) {
@@ -119,6 +129,7 @@ export default function SignInSide() {
                 id="email"
                 label="Email Address"
                 name="email"
+                value={localStorage.getItem("user email")}
                 autoComplete="email"
                 autoFocus
                 error={emailError !== ""}
@@ -136,10 +147,7 @@ export default function SignInSide() {
                 error={passwordError !== ""}
                 helperText={passwordError}
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
+
               <Button
                 type="submit"
                 fullWidth

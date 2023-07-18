@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ThemeContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
@@ -19,7 +19,10 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 export default function UserMenu() {
   const { user, logout } = UserAuth();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { theme, setTheme } = useContext(ThemeContext);
+  const userAvatar = user?.email ? user.email.charAt(0).toUpperCase() : "";
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -37,14 +40,18 @@ export default function UserMenu() {
     }
   };
 
-  const { theme, setTheme } = useContext(ThemeContext);
-
   const onClickTheme = () => {
-    setTheme("dark");
-    if (theme === "dark") {
-      setTheme("light");
-    }
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
   };
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      setTheme(storedTheme);
+    } // eslint-disable-next-line
+  }, []);
 
   return (
     <React.Fragment>
@@ -58,7 +65,7 @@ export default function UserMenu() {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }}>{userAvatar}</Avatar>
           </IconButton>
         </Tooltip>
       </Box>
