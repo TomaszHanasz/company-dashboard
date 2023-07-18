@@ -3,24 +3,24 @@
   height: 100vh;
   background-image: url("./../../images/nick-chong-N__BnvQ_w18-unsplash.jpg");
   background-position: center;
-  position: relative;
 }
 
 .sign-up__box {
   margin-top: 0px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
-@media screen and (max-width: 600px) {
-  .sign-up__background {
-    position: initial;
-  }
+.google-btn {
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
 
-  .sign-up__box {
-    position: initial;
-    transform: translate(0, 5%);
-  }
+#root
+  > div
+  > div
+  > main
+  > div
+  > form
+  > div.MuiGrid-root.MuiGrid-container.css-16g5rpk-MuiGrid-root {
+  justify-content: center;
 }

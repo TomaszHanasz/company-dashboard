@@ -133,11 +133,15 @@ export default function SignUp() {
               >
                 Sign Up
               </Button>
-              <GoogleButton />
+              <GoogleButton className="google-btn" />
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <RouterLink to="/signin">
-                    <Link href="#" variant="body2">
+                    <Link
+                      href="#"
+                      variant="body2"
+                      style={{ textAlign: "center" }}
+                    >
                       Already have an account? Sign in
                     </Link>
                   </RouterLink>
