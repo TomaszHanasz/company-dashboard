@@ -14,6 +14,7 @@ import logo from "./../../images/logo.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate, Link as RouterLink } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
+import GoogleButton from "react-google-button";
 import "./signUp.style.css";
 
 function Copyright(props) {
@@ -132,6 +133,7 @@ export default function SignUp() {
               >
                 Sign Up
               </Button>
+              <GoogleButton />
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <RouterLink to="/signin">
