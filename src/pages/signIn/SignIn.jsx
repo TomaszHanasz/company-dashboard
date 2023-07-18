@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,6 +11,7 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import logo from "./../../images/logo.png";
+import GoogleButton from "react-google-button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate, Link as RouterLink } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
@@ -35,11 +36,24 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
-  const { signInWithEmail } = UserAuth();
+  const { signInWithEmail, googleSignIn, user } = UserAuth();
   const navigate = useNavigate();
-
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await googleSignIn();
+    } catch (err) {
+      console.log("google sign in error:", err);
+    }
+  };
+
+  useEffect(() => {
+    if (user !== null) {
+      navigate("/");
+    }
+  }, [user]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -143,6 +157,11 @@ export default function SignInSide() {
               >
                 Sign In
               </Button>
+              <GoogleButton
+                className="google-btn"
+                style={{ backgroundColor: "#1976d2" }}
+                onClick={handleGoogleSignIn}
+              />
               <Grid container>
                 <Grid item>
                   <RouterLink to="/signup">

@@ -142,18 +142,11 @@ export default function SignUp() {
               >
                 Sign Up
               </Button>
-              <GoogleButton
-                className="google-btn"
-                style={{ backgroundColor: "#1976d2" }}
-              />
-              <Grid container justifyContent="flex-end">
+
+              <Grid container justifyContent="flex-start">
                 <Grid item>
                   <RouterLink to="/signin">
-                    <Link
-                      href="#"
-                      variant="body2"
-                      style={{ textAlign: "center" }}
-                    >
+                    <Link href="#" variant="body2">
                       Already have an account? Sign in
                     </Link>
                   </RouterLink>
