@@ -9,7 +9,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
+import Paper from "@mui/material/Paper";
 import logo from "./../../images/logo.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate, Link as RouterLink } from "react-router-dom";
@@ -65,22 +65,31 @@ export default function SignUp() {
   };
 
   return (
-    <div className="sign-up__background">
-      <ThemeProvider theme={defaultTheme}>
-        <Container
-          component="main"
-          maxWidth="xs"
-          style={{
-            backgroundColor: "white",
-            borderRadius: 10,
-            padding: 30,
+    <ThemeProvider theme={defaultTheme}>
+      <Grid container component="main" sx={{ height: "100vh" }}>
+        <CssBaseline />
+        <Grid
+          item
+          xs={false}
+          sm={4}
+          md={7}
+          sx={{
+            backgroundImage:
+              "url(https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80)",
+            backgroundRepeat: "no-repeat",
+            backgroundColor: (t) =>
+              t.palette.mode === "light"
+                ? t.palette.grey[50]
+                : t.palette.grey[900],
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
-          className="sign-up__box"
-        >
-          <CssBaseline />
+        />
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{
-              marginTop: 8,
+              my: 8,
+              mx: 4,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -90,7 +99,7 @@ export default function SignUp() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign up
+              Sign Up
             </Typography>
             <Box
               component="form"
@@ -133,7 +142,10 @@ export default function SignUp() {
               >
                 Sign Up
               </Button>
-              <GoogleButton className="google-btn" />
+              <GoogleButton
+                className="google-btn"
+                style={{ width: 436, backgroundColor: "#1976d2" }}
+              />
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <RouterLink to="/signin">
@@ -150,8 +162,8 @@ export default function SignUp() {
             </Box>
           </Box>
           <Copyright sx={{ mt: 5 }} />
-        </Container>
-      </ThemeProvider>
-    </div>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
   );
 }
