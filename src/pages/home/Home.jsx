@@ -53,9 +53,18 @@ const Home = () => {
     setIcons((icons) => {
       const oldIndex = icons.findIndex((icons) => icons.id === active.id);
       const newIndex = icons.findIndex((icons) => icons.id === over.id);
-      return arrayMove(icons, oldIndex, newIndex);
+      const updatedIcons = arrayMove(icons, oldIndex, newIndex);
+      localStorage.setItem("iconsOrder", JSON.stringify(updatedIcons));
+      return updatedIcons;
     });
   };
+
+  useEffect(() => {
+    const savedIconsOrder = localStorage.getItem("iconsOrder");
+    if (savedIconsOrder) {
+      setIcons(JSON.parse(savedIconsOrder));
+    }
+  }, []);
 
   const toggleCollapse = () => {
     setIsCollapsed((prevCollapsed) => !prevCollapsed);

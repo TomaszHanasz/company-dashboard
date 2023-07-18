@@ -34,7 +34,6 @@ export default function UserMenu() {
     try {
       await logout();
       navigate("/signin");
-      console.log("You are logged out");
     } catch (err) {
       console.log(err);
     }
