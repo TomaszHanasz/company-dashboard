@@ -12,3 +12,13 @@
   > div.MuiGrid-root.MuiGrid-container.css-16g5rpk-MuiGrid-root {
   justify-content: flex-start;
 }
+
+#root
+  > div
+  > main
+  > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation6.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-8.MuiGrid-grid-md-5.css-gadse4-MuiPaper-root-MuiGrid-root
+  > div
+  > form
+  > div.google-btn {
+  width: 100% !important;
+}

@@ -144,7 +144,7 @@ export default function SignUp() {
               </Button>
               <GoogleButton
                 className="google-btn"
-                style={{ width: 436, backgroundColor: "#1976d2" }}
+                style={{ backgroundColor: "#1976d2" }}
               />
               <Grid container justifyContent="flex-end">
                 <Grid item>
