@@ -73,6 +73,12 @@
   margin-top: 20px;
 }
 
+.table__logo {
+  width: 40%;
+  display: block;
+  margin: 0 auto;
+}
+
 @media screen and (max-width: 800px) {
   .search__input {
     align-items: center;

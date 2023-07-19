@@ -3,6 +3,7 @@ import NavBar from "../../components/navBar/NavBar";
 import DataTable from "../../components/dataTable/DataTable";
 import Footer from "../../components/footer/Footer";
 import { ThemeContext } from "../../App";
+import biglogo from "./../../images/pngegg.png";
 import "./tableSite.style.css";
 
 const TableSite = () => {
@@ -102,7 +103,11 @@ const TableSite = () => {
         <h1 className={`home-menus__title home-menus__title-${theme}`}>
           {stockInfo ? stockInfo.name : null}
         </h1>
-        <DataTable stockInfo={stockInfo} />
+        {stockInfo ? (
+          <DataTable stockInfo={stockInfo} />
+        ) : (
+          <img src={biglogo} className="table__logo" alt="big logo" />
+        )}
       </div>
       <Footer />
     </div>

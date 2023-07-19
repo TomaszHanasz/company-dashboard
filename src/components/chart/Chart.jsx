@@ -50,10 +50,18 @@ const Chart = ({ stockInfo }) => {
     });
   }, [stockInfo]);
 
+  const options = {
+    scales: {
+      x: {
+        reverse: true,
+      },
+    },
+  };
+
   return (
     <div>
       <div className="chart__box">
-        <Line data={chartData} />
+        <Line data={chartData} options={options} />
       </div>
     </div>
   );
