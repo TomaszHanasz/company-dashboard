@@ -30,6 +30,24 @@ tr:hover {
   background-color: #ddd;
 }
 
+.table__btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.data-table__btn {
+  width: 100px;
+  height: 2rem;
+  color: #ddd;
+  background-color: darkslategray;
+}
+
+.data-table__btn:disabled {
+  background-color: #ddd;
+  color: darkslategray;
+}
+
 .stock__data-table {
   width: 70%;
   margin: 50px auto;

@@ -4,6 +4,7 @@ import {
   useReactTable,
   getCoreRowModel,
   flexRender,
+  getPaginationRowModel,
 } from "@tanstack/react-table";
 import { ThemeContext } from "../../App";
 import "./dataTable.style.css";
@@ -64,6 +65,12 @@ const DataTable = ({ stockInfo }) => {
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    initialState: {
+      pagination: {
+        pageSize: 25,
+      },
+    },
   });
 
   return (
@@ -93,6 +100,23 @@ const DataTable = ({ stockInfo }) => {
           ))}
         </tbody>
       </table>
+
+      <div className="table__btns">
+        <button
+          className="data-table__btn"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          Previous Page
+        </button>
+        <button
+          className="data-table__btn"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          Next Page
+        </button>
+      </div>
     </div>
   );
 };
