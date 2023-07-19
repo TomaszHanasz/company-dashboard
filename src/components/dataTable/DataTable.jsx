@@ -76,7 +76,7 @@ const DataTable = ({ stockInfo }) => {
 
   return (
     <div>
-      {data ? null : (
+      {data.length > 0 ? (
         <>
           <Chart stockInfo={data} />
           <table className="stock__data-table">
@@ -124,7 +124,7 @@ const DataTable = ({ stockInfo }) => {
             </button>
           </div>
         </>
-      )}
+      ) : null}
     </div>
   );
 };
