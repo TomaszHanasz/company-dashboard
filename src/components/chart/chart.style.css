@@ -1,0 +1,12 @@
+.chart__box {
+  padding: 20px;
+  width: 600px;
+  background-color: white;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 600px) {
+  .chart__box {
+    width: 100%;
+  }
+}

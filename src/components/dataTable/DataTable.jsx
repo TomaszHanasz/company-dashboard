@@ -7,6 +7,7 @@ import {
   getPaginationRowModel,
 } from "@tanstack/react-table";
 import { ThemeContext } from "../../App";
+import Chart from "../chart/Chart";
 import "./dataTable.style.css";
 
 const DataTable = ({ stockInfo }) => {
@@ -75,48 +76,55 @@ const DataTable = ({ stockInfo }) => {
 
   return (
     <div>
-      <table className="stock__data-table">
-        {table.getHeaderGroups().map((headerGroup) => (
-          <tr className={`table-row-${theme}`} key={headerGroup.id}>
-            {headerGroup.headers.map((header) => (
-              <th key={header.id}>
-                {flexRender(
-                  header.column.columnDef.header,
-                  header.getContext()
-                )}
-              </th>
+      {data ? null : (
+        <>
+          <Chart stockInfo={data} />
+          <table className="stock__data-table">
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr className={`table-row-${theme}`} key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th key={header.id}>
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
+                  </th>
+                ))}
+              </tr>
             ))}
-          </tr>
-        ))}
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr className={`table-row-${theme}`} key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
+            <tbody>
+              {table.getRowModel().rows.map((row) => (
+                <tr className={`table-row-${theme}`} key={row.id}>
+                  {row.getVisibleCells().map((cell) => (
+                    <td key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </td>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      <div className="table__btns">
-        <button
-          className="data-table__btn"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          Previous Page
-        </button>
-        <button
-          className="data-table__btn"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Next Page
-        </button>
-      </div>
+            </tbody>
+          </table>
+          <div className="table__btns">
+            <button
+              className="data-table__btn"
+              onClick={() => table.previousPage()}
+              disabled={!table.getCanPreviousPage()}
+            >
+              Previous Page
+            </button>
+            <button
+              className="data-table__btn"
+              onClick={() => table.nextPage()}
+              disabled={!table.getCanNextPage()}
+            >
+              Next Page
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
